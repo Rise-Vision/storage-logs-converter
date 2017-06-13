@@ -27,8 +27,8 @@ const bqToTable = 'UsageLogs';
 // const fromDate = moment('2015-01-01');
 // const toDate = moment('2017-07-01');
 
-const fromDate = moment('2015-02-01');
-const toDate = moment('2016-01-01');
+const fromDate = moment('2016-01-01');
+const toDate = moment('2017-06-01');
 
 const processStartTime = Date.now();
 // var dateFrom = process.argv[2] ? new Date(process.argv[2]) : new Date(2017, 02, 22);
@@ -43,15 +43,19 @@ execSync(`gcloud config set project '${bqProjectId}'`);
 
 for (var batchDay = moment(fromDate); batchDay.isBefore(toDate); batchDay.add(1, 'days')) {
   var batchNextDay = batchDay.clone().add(1, 'days');
+  var batchNextMonth = batchDay.clone().add(1, 'months');
   var batchFromDate = batchDay.format('YYYY-MM-DD');
   var batchToDate = batchNextDay.format('YYYY-MM-DD');
 
-  var sourceTable = `${bqFromDataset}.${bqFromTable}${batchDay.format('YYYY_M')}`;
+  var sourceTableCurrent = batchDay.format('YYYY_M');
+  var sourceTableNext = batchNextMonth.format('YYYY_M');
+
+  var sourceTable = `TABLE_QUERY([${bqFromDataset}], "table_id = '${bqFromTable}${sourceTableCurrent}' OR table_id = '${bqFromTable}${sourceTableNext}'")`;
   var destinationTable = `${bqToDataset}.${bqToTable}${batchDay.format('YYYYMMDD')}`;
 
   var tableStartTime = Date.now();
 
-  var bqExportCommand = `bq query --format=none --destination_table '${destinationTable}' --allow_large_results "SELECT * FROM [${sourceTable}] where time_micros >= TIMESTAMP('${batchFromDate}') and time_micros < TIMESTAMP('${batchToDate}')"`;
+  var bqExportCommand = `bq query --format=none --destination_table '${destinationTable}' --allow_large_results "SELECT * FROM ${sourceTable} where time_micros >= TIMESTAMP('${batchFromDate}') and time_micros < TIMESTAMP('${batchToDate}')"`;
 
   console.log(`Beginning process for ${batchFromDate}`);
 
