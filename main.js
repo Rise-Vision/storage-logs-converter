@@ -51,22 +51,21 @@ for (var batchDay = moment(fromDate); batchDay.isBefore(toDate); batchDay.add(1,
 
   var tableStartTime = Date.now();
 
-  var bqExportCommand = `
-  bq query 
-  #--batch
-  --destination_table '${destinationTable}' 
-  --allow_large_results
-  "SELECT * FROM [${sourceTable}] 
-
-  where time_micros >= TIMESTAMP('${batchFromDate}')
-  and time_micros < TIMESTAMP('${batchToDate}')"
-  `;
+  var bqExportCommand = `bq query --format=none --destination_table '${destinationTable}' --allow_large_results "SELECT * FROM [${sourceTable}] where time_micros >= TIMESTAMP('${batchFromDate}') and time_micros < TIMESTAMP('${batchToDate}')"`;
 
   console.log(`Beginning process for ${batchFromDate}`);
 
-  _runCommand(bqExportCommand, `Running batch command`);
+  var pt;
+  try {
+    _runCommand(bqExportCommand, `Running batch command`);
+    
+    pt = { table: batchFromDate, time: (Date.now() - tableStartTime) };
+  } catch (err) {
+    console.log(`Table error ${batchFromDate}`, err);
 
-  var pt = { table: batchFromDate, time: (Date.now() - tableStartTime) };
+    pt = { table: batchFromDate, time: (Date.now() - tableStartTime), error: true };
+  }
+
   processedTables.push(pt);
   _printTableData(pt);
 }
@@ -81,7 +80,7 @@ function _runCommand(command, label) {
 }
 
 function _printTableData(pt) {
-  console.log(`Table: ${pt.table}, total time: ${_tsToSec(pt.time)} secs (${_tsToMin(pt.time)} mins)`);
+  console.log(`Table: ${pt.table}, total time: ${_tsToSec(pt.time)} secs (${_tsToMin(pt.time)} mins) ${pt.error?'Failed':'Successful'}`);
 }
 
 function _formatDecimal(number) {
