@@ -9,8 +9,8 @@ const bqProjectId = 'rva-media-library-test';
 const bqFromDataset = 'RiseStorageLogsTest';
 // const bqFromDataset = 'RiseStorageLogs';
 
-const bqToDataset = 'test_dataset';
-// const bqToDataset = 'RiseStorageLogsTest_v2';
+// const bqToDataset = 'test_dataset';
+const bqToDataset = 'RiseStorageLogsTest_v2';
 // const bqToDataset = 'RiseStorageLogs_v2';
 
 const bqFromTable = 'UsageLogs';
@@ -27,8 +27,8 @@ const bqToTable = 'UsageLogs';
 // const fromDate = moment('2015-01-01');
 // const toDate = moment('2017-07-01');
 
-const fromDate = moment('2016-04-01');
-const toDate = moment('2016-04-03');
+const fromDate = moment('2015-02-01');
+const toDate = moment('2016-01-01');
 
 const processStartTime = Date.now();
 // var dateFrom = process.argv[2] ? new Date(process.argv[2]) : new Date(2017, 02, 22);
