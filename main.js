@@ -50,7 +50,7 @@ for (var batchDay = moment(fromDate); batchDay.isBefore(toDate); batchDay.add(1,
   var sourceTableCurrent = batchDay.format('YYYY_M');
   var sourceTableNext = batchNextMonth.format('YYYY_M');
 
-  var sourceTable = `TABLE_QUERY([${bqFromDataset}], "table_id = '${bqFromTable}${sourceTableCurrent}' OR table_id = '${bqFromTable}${sourceTableNext}'")`;
+  var sourceTable = `TABLE_QUERY([${bqFromDataset}], \\"table_id = '${bqFromTable}${sourceTableCurrent}' OR table_id = '${bqFromTable}${sourceTableNext}'\\")`;
   var destinationTable = `${bqToDataset}.${bqToTable}${batchDay.format('YYYYMMDD')}`;
 
   var tableStartTime = Date.now();
