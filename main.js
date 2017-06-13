@@ -3,7 +3,7 @@ const execSync = require("child_process").execSync;
 
 // Your Google Cloud Platform project ID
 // const bqProjectId = 'rva-media-library-test';
-const projectId = 'avid-life-623';
+const bqProjectId = 'avid-life-623';
 
 // The name for the new dataset
 // const bqFromDataset = 'RiseStorageLogsTest';
