@@ -1,0 +1,20 @@
+{
+  "name": "storage-logs-converter",
+  "version": "1.0.0",
+  "description": "Basic project created for the conversion process.",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rise-Vision/storage-logs-converter.git"
+  },
+  "author": "",
+  "license": "GNU",
+  "dependencies": {
+    "moment": "^2.0.0",
+    "child_process": "^1.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Rise-Vision/storage-logs-converter/issues"
+  },
+  "homepage": "https://github.com/Rise-Vision/storage-logs-converter#readme"
+}
