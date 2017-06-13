@@ -13,11 +13,9 @@ const bqToDataset = 'test_dataset';
 // const bqToDataset = 'RiseStorageLogsTest_v2';
 // const bqToDataset = 'RiseStorageLogs_v2';
 
-const bqFromTable = 'StorageLogs';
-// const bqFromTable = 'UsageLogs';
+const bqFromTable = 'UsageLogs';
 
-const bqToTable = 'StorageLogs';
-// const bqToTable = 'UsageLogs';
+const bqToTable = 'UsageLogs';
 
 // const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -41,7 +39,7 @@ var tableCount = 0;
 var processedTables = [];
 
 console.log(`Setting default GCloud project: ${bqProjectId}`);
-// execSync(`gcloud config set project '${bqProjectId}'`);
+execSync(`gcloud config set project '${bqProjectId}'`);
 
 for (var batchDay = moment(fromDate); batchDay.isBefore(toDate); batchDay.add(1, 'days')) {
   var batchNextDay = batchDay.clone().add(1, 'days');
@@ -79,7 +77,7 @@ processedTables.forEach(_printTableData);
 
 function _runCommand(command, label) {
   console.log(label, command);
-  // execSync(command, { stdio:[0,1,2] });
+  execSync(command, { stdio:[0,1,2] });
 }
 
 function _printTableData(pt) {
