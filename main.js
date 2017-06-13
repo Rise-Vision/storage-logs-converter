@@ -2,16 +2,16 @@ const moment = require('moment');
 const execSync = require("child_process").execSync;
 
 // Your Google Cloud Platform project ID
-const bqProjectId = 'rva-media-library-test';
-// const projectId = 'avid-life-623';
+// const bqProjectId = 'rva-media-library-test';
+const projectId = 'avid-life-623';
 
 // The name for the new dataset
-const bqFromDataset = 'RiseStorageLogsTest';
-// const bqFromDataset = 'RiseStorageLogs';
+// const bqFromDataset = 'RiseStorageLogsTest';
+const bqFromDataset = 'RiseStorageLogs';
 
 // const bqToDataset = 'test_dataset';
-const bqToDataset = 'RiseStorageLogsTest_v2';
-// const bqToDataset = 'RiseStorageLogs_v2';
+// const bqToDataset = 'RiseStorageLogsTest_v2';
+const bqToDataset = 'RiseStorageLogs_v2';
 
 const bqFromTable = 'UsageLogs';
 
@@ -27,8 +27,8 @@ const bqToTable = 'UsageLogs';
 // const fromDate = moment('2015-01-01');
 // const toDate = moment('2017-07-01');
 
-const fromDate = moment('2016-01-01');
-const toDate = moment('2017-06-01');
+const fromDate = moment('2015-03-01');
+const toDate = moment('2015-04-01');
 
 const processStartTime = Date.now();
 // var dateFrom = process.argv[2] ? new Date(process.argv[2]) : new Date(2017, 02, 22);
