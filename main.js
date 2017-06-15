@@ -27,8 +27,8 @@ const bqToTable = 'UsageLogs';
 // const fromDate = moment('2015-01-01');
 // const toDate = moment('2017-07-01');
 
-const fromDate = moment('2015-03-01');
-const toDate = moment('2015-04-01');
+const fromDate = moment('2017-06-01');
+const toDate = moment('2017-06-14');
 
 const processStartTime = Date.now();
 // var dateFrom = process.argv[2] ? new Date(process.argv[2]) : new Date(2017, 02, 22);
