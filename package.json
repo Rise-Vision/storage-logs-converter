@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Basic project created for the conversion process.",
   "main": "main.js",
+  "storage": "storage.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Rise-Vision/storage-logs-converter.git"
