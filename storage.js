@@ -2,21 +2,20 @@ const moment = require('moment');
 const execSync = require("child_process").execSync;
 
 // Your Google Cloud Platform project ID
-const bqProjectId = 'rva-media-library-test';
-// const bqProjectId = 'avid-life-623';
+// const bqProjectId = 'rva-media-library-test';
+const bqProjectId = 'avid-life-623';
 
 // The name for the new dataset
-const bqFromDataset = 'RiseStorageLogsTest';
-// const bqFromDataset = 'RiseStorageLogs';
+// const bqFromDataset = 'RiseStorageLogsTest';
+const bqFromDataset = 'RiseStorageLogs';
 
-const bqToDataset = 'test_dataset';
+// const bqToDataset = 'test_dataset';
 // const bqToDataset = 'RiseStorageLogsTest_v2';
-// const bqToDataset = 'RiseStorageLogs_v2';
+const bqToDataset = 'RiseStorageLogs_v2';
 
 const bqFromTable = 'StorageLogs';
 
 const bqToTable = 'StorageLogs';
-
 
 const fromDate = moment('2015-03-01');
 const toDate = moment('2016-01-01');
@@ -49,7 +48,7 @@ for (var batchDay = moment(fromDate); batchDay.isBefore(toDate); batchDay.add(1,
   } catch (err) {
     console.log(`Table error ${sourceTableCurrent}`, err);
 
-    pt = { table: batchFromDate, time: (Date.now() - tableStartTime), error: true };
+    pt = { table: sourceTableCurrent, time: (Date.now() - tableStartTime), error: true };
   }
 
   processedTables.push(pt);
