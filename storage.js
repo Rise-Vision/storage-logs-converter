@@ -17,8 +17,8 @@ const bqFromTable = 'StorageLogs';
 
 const bqToTable = 'StorageLogs';
 
-const fromDate = moment('2015-03-01');
-const toDate = moment('2016-01-01');
+const fromDate = moment('2017-06-01');
+const toDate = moment('2017-06-02');
 
 const processStartTime = Date.now();
 
@@ -31,8 +31,8 @@ execSync(`gcloud config set project '${bqProjectId}'`);
 for (var batchDay = moment(fromDate); batchDay.isBefore(toDate); batchDay.add(1, 'months')) {
   var sourceTableCurrent = batchDay.format('YYYY_M');
 
-  var sourceTable = `[${bqFromDataset}.${bqFromTable}${sourceTableCurrent}]`;
-  var destinationTable = `[${bqToDataset}.${bqToTable}${batchDay.format('YYYYMM')}01]`;
+  var sourceTable = `${bqFromDataset}.${bqFromTable}${sourceTableCurrent}`;
+  var destinationTable = `${bqToDataset}.${bqToTable}${batchDay.format('YYYYMM')}01`;
 
   var tableStartTime = Date.now();
 
